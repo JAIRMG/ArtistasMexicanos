@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/pintura" android:title="Pintura" android:icon="@drawable/paintbrush"/>
+    <item android:id="@+id/escultura" android:title="Escultura" android:icon="@drawable/venus"/>
+    <item android:id="@+id/literatura" android:title="Literatura" android:icon="@drawable/book"/>
+    <item android:id="@+id/cine" android:title="Cine" android:icon="@drawable/videocamera"/>
+    <item android:id="@+id/teatro" android:title="Teatro" android:icon="@drawable/theatre"/>
+    <item android:id="@+id/arquitectura" android:title="Arquitectura" android:icon="@drawable/office"/>
+
+</menu>

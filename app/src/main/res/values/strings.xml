@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Artistas Mexicanos</string>
+    <string name="abierto">DrawerLayout</string>
+    <string name="cerrado">DrawerLayout</string>
+</resources>
