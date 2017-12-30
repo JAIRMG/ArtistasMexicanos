@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,21 +21,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Avoid taking screenshot
+        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.HONEYCOMB) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+        }
         setContentView(R.layout.activity_main);
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
+
+        //When launch for the first time
+        Fragment fragment = new Fragment();
+        fragment = new pinturaFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, fragment).commit();
+
+        initElements();
 
 
-        //show and hide the menu when tapping the menu icon on actionbar
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.abierto,R.string.cerrado);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //Set painting Fragment as the main fragment
-        //getSupportFragmentManager().beginTransaction().replace(R.id.drawer, pinturaFragment).commit();
-
-        //Action when tapping an element in the left menu
-        navigationView = (NavigationView)findViewById(R.id.navigationview);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
             @Override
@@ -80,7 +80,23 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void initElements() {
 
+        //Set painting Fragment as the main fragment
+        //getSupportFragmentManager().beginTransaction().replace(R.id.drawer, pinturaFragment).commit();
+
+        //Action when tapping an element in the left menu
+        navigationView = (NavigationView)findViewById(R.id.navigationview);
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
+
+
+        //show and hide the menu when tapping the menu icon on actionbar
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.abierto,R.string.cerrado);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
